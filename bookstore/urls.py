@@ -5,5 +5,5 @@ from bookstore import views
 urlpatterns = [
     path('',views.home, name='home' ),
     path('search',views.search, name='search' ),
-    path('del_book/<int:pk>',views.del_book, name='del_book' ),
+    path('delele/<int:id>',views.delete, name='delete' ),
 ]

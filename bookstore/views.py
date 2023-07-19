@@ -10,7 +10,7 @@ def home(request):
     context ={
        "list_books":all_books
     }
-    return render(request, 'bookstore/index.html',context)
+    return render(request, 'bookstore/book.html',context)
 
 def search(request):
     if request.method == "POST":
@@ -20,16 +20,16 @@ def search(request):
             context ={
             "list_books":all_books
             }
-            return render(request, 'bookstore/index.html',context)
+            return render(request, 'bookstore/book.html',context)
         except:
-            return render(request,'bookstore/index.html',{})
+            return render(request,'bookstore/book.html',{})
     else:
-        return render(request,'bookstore/index.html',{})
+        return render(request,'bookstore/book.html',{})
 
  
-def del_book(request,pk):
+def delete(request,id):
     if request.method == "GET":
-        book = Books.objects.get(pk=pk)
+        book = Books.objects.get(pk=id)
         book.delete()
         return JsonResponse({"message":"success"})
     return JsonResponse({"message":"Wrong route"})
