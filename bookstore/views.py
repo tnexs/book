@@ -1,14 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from .models import Books
+from .models import Books, Authors
 from django.core import serializers
 from django.template import loader 
 # Create your views here.
 
 def home(request):
+    authors = Authors.objects.all()
     all_books = Books.objects.all()
     context ={
-       "list_books":all_books
+       "list_books":all_books,
+       "authors": authors
     }
     return render(request, 'bookstore/book.html',context)
 
@@ -33,3 +35,5 @@ def delete(request,id):
         book.delete()
         return JsonResponse({"message":"success"})
     return JsonResponse({"message":"Wrong route"})
+
+
